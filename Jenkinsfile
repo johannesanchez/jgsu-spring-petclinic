@@ -13,10 +13,11 @@ pipeline {
                     devBranch: {
                         echo "This is branch dev"
                         git url: 'https://github.com/johannesanchez/jgsu-spring-petclinic', branch: 'dev'
-                        sh "echo Parallel on devBranch; sleep 5s; echo finished phase p2 devBranch"
+                        sh "echo Parallel on devBranch; sleep 30s; echo finished phase p2 devBranch"
                         },
                     failFast: true //|false
                 )
+                sh "echo run this after both phases complete"
             }
         }
     }
