@@ -26,9 +26,7 @@ pipeline {
         stage('Deploy approval'){
             steps {
                 echo "This is the message for Deploy Approval"
-                input {
-                    message "Do you want to proceed for prod deployment?"
-                }
+                input "Do you want to proceed for prod deployment?"
                 echo "Deploying ..."
             }
         }
