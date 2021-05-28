@@ -30,10 +30,11 @@ pipeline {
                 echo "This is the message for post-Deploy"
             }
         }
-        post {
-            always {
-                echo "General Build successful"
-            }
+    }
+
+    post {
+        always {
+            echo "General Build successful"
         }
     }
 }
