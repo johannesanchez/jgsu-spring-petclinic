@@ -20,11 +20,6 @@ pipeline {
                 // sh "echo run this after both phases complete"
             }
         }
-        post {
-            always {
-                echo "General Build successful"
-            }
-        }
         stage('Deploy approval'){
             steps {
                 echo "This is the message for Deploy Approval"
@@ -33,6 +28,11 @@ pipeline {
         stage('Post-Deploy'){
             steps {
                 echo "This is the message for post-Deploy"
+            }
+        }
+        post {
+            always {
+                echo "General Build successful"
             }
         }
     }
