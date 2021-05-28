@@ -1,6 +1,9 @@
 pipeline {
     agent any
     triggers { pollSCM('*/2 * * * *') }
+    environment {
+        BRANCH_NAME = "${env.BRANCH_NAME}"
+    }
     stages {
         stage('Checkout'){
             steps {
@@ -12,7 +15,7 @@ pipeline {
                         },
                     devBranch: {
                         echo "This is branch dev"
-                        git url: 'https://github.com/johannesanchez/jgsu-spring-petclinic', branch: 'dev'
+                        // git url: 'https://github.com/johannesanchez/jgsu-spring-petclinic', branch: 'dev'
                         sh "echo Parallel on devBranch; sleep 30s; echo finished phase p2 devBranch"
                         },
                     failFast: true //|false
@@ -20,21 +23,26 @@ pipeline {
                 // sh "echo run this after both phases complete"
             }
         }
+    }
+
+    post {
+        always {
+            echo "General Build successful"
+        }
+    }
+
+    stages {
         stage('Deploy approval'){
             steps {
                 echo "This is the message for Deploy Approval"
+                // input
+                echo "Deploying ..."
             }
         }
         stage('Post-Deploy'){
             steps {
                 echo "This is the message for post-Deploy"
             }
-        }
-    }
-
-    post {
-        always {
-            echo "General Build successful"
         }
     }
 }
