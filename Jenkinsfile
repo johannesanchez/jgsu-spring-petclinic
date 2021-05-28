@@ -13,7 +13,7 @@ pipeline {
                 },
                 failFast: true //|false
                 }
-                sh "echo run this after both phases complete"
+                // sh "echo run this after both phases complete"
             }
         //Added this lines to create dev branch on remote
         // stage('Checkout'){
