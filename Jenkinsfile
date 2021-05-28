@@ -20,6 +20,21 @@ pipeline {
                 // sh "echo run this after both phases complete"
             }
         }
+        post {
+            always {
+                echo "General Build successful"
+            }
+        }
+        stage('Deploy approval'){
+            steps {
+                echo "This is the message for Deploy Approval"
+            }
+        }
+        stage('Post-Deploy'){
+            steps {
+                echo "This is the message for post-Deploy"
+            }
+        }
     }
 }
         //Added this lines to create dev branch on remote
