@@ -26,7 +26,9 @@ pipeline {
         stage('Deploy approval'){
             steps {
                 echo "This is the message for Deploy Approval"
-                // input
+                input {
+                    message "Do you want to proceed for prod deployment?"
+                }
                 echo "Deploying ..."
             }
         }
@@ -41,6 +43,13 @@ pipeline {
         always {
             echo "General Build successful"
         }
+        success {
+            echo "Successfully !!!"
+        }
+    }
+
+    options {
+        timeout(time: 60, unit: 'MINUTES')
     }
 }
         //Added this lines to create dev branch on remote
